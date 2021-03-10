@@ -17,7 +17,7 @@ public class BingPage {
     public void enterSearchText(String searchPhase) {
         switchTo().frame($("iframe#iframeResult"));
         switchTo().frame($("iframe[src='https://www.bing.com']"));
-        $(bingLogo).should(Condition.appear);
+        $(bingLogo).shouldBe(Condition.visible).should(Condition.appear);
         $(searchInput).should(Condition.appear).sendKeys(searchPhase);
     }
 

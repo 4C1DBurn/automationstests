@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-
-<configs>
-    <imagesPath>src\main\java\resources\imagesPath\</imagesPath>
-    <dbPath>src\main\java\resources\DBPath\</dbPath>
-
-</configs>

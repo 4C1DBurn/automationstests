@@ -2,20 +2,25 @@ package tests;
 
 import libs.DatabaseManager.DatabaseManager;
 import libs.Utilites.Utilities;
-import libs.xmlConfigReader.xmlConfigReader;
 import org.testng.annotations.*;
 
 import java.io.File;
 
-//@Listeners(ScreenshotListener.class)
 public class BeforeSuit {
 
-    private xmlConfigReader paths;
+    public static String imagesPath() {
+       return Utilities.fixFilePath("src\\main\\java\\resources\\imagesPath\\");
+    }
+    public static String dBPath() {
+        return Utilities.fixFilePath("src\\main\\java\\resources\\DBPath\\");
+    }
+
+
 
 
     @BeforeClass(groups = {"config", "TEST"}, alwaysRun = true)
     public void BeforeClass() {
-        paths = new xmlConfigReader();
+
         try {
             DatabaseManager databaseManager = new DatabaseManager("country");
             databaseManager.createDataBase();
@@ -27,7 +32,7 @@ public class BeforeSuit {
             System.out.println("Creating DB Done");
 
             Utilities.saveFile("http://apimeme.com/meme?meme=Alarm-Clock&top=Top+text&bottom=Bottom+text",
-                    System.getProperty("user.dir") + File.separatorChar + paths.getImagesPath() + "example.jpeg");
+                    System.getProperty("user.dir") + File.separatorChar + imagesPath() + "example.jpeg");
             System.out.println("Downloading image from URL done");
         } catch (Exception e) {
             System.out.println(e);
@@ -36,7 +41,7 @@ public class BeforeSuit {
 
     @AfterTest(groups = {"config"}, alwaysRun = true)
     public void AfterClass() {
-        Utilities.deleteFile(System.getProperty("user.dir") + File.separatorChar + paths.getDbPath());
+        Utilities.deleteFile(System.getProperty("user.dir") + File.separatorChar + dBPath());
     }
 
 }

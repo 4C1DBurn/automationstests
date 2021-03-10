@@ -1,12 +1,10 @@
-package tests.TEST;
+package tests;
 
 import PageObjects.BingPage;
 import PageObjects.IframePage;
 import libs.DatabaseManager.DatabaseManager;
 import libs.Utilites.Utilities;
-import libs.xmlConfigReader.xmlConfigReader;
 import org.testng.annotations.Test;
-import tests.BeforeSuit;
 
 import java.io.File;
 import java.sql.ResultSet;
@@ -20,17 +18,17 @@ public class Tests extends BeforeSuit {
 
     @Test(groups = {"TEST"}, priority = 1)
     public void compareTwoImagesInBase64() throws Exception {
-        xmlConfigReader paths = new xmlConfigReader();
+        
 
         String imageExample2Base64 = null;
             imageExample2Base64 = Utilities.encodeFileToBase64Binary(new File(String.valueOf(Utilities.saveFile(
                     "http://apimeme.com/meme?meme=Alarm-Clock&top=Top+text&bottom=Bottom+text",
                         System.getProperty("user.dir")
-                                                                    + File.separatorChar + paths.getImagesPath()
+                                                                    + File.separatorChar + BeforeSuit.imagesPath()
                                                                     + "example2.jpeg"))));
         String imageExampleBase64 = Utilities.encodeFileToBase64Binary(new File(System.getProperty("user.dir")
                 + File.separatorChar
-                + paths.getImagesPath()
+                + BeforeSuit.imagesPath()
                 + "example.jpeg"));
 
         assertEquals(imageExample2Base64, imageExampleBase64);

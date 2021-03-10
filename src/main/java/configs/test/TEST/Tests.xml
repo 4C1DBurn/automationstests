@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Tests">
+    <test name="Tests">
+
+        <groups>
+            <define name="All">
+                <include name="TEST"/>
+            </define>
+            <run>
+                <include name="All"/>
+            </run>
+        </groups>
+        <packages>
+            <package name="tests.TEST.*">
+
+            </package>
+        </packages>
+    </test>
+
+</suite>
+
+
